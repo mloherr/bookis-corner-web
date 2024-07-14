@@ -1,5 +1,4 @@
-const URL = 'http://localhost:3000';
-// import localStorage from './localStorage.js';
+const URL = 'https://bookish-corner.vercel.app';
 
 const getBooks = () => {
   // Llamamos a la API
