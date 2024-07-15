@@ -29,7 +29,7 @@ function BookDetail({ bookDetailData }) {
           <div className="sectionDetailData__containerData--info">
             <h4 className="bookInfo__title">{bookDetailData?.title}</h4>
             <p className="bookInfo__resume--title">Sinopsis:</p>
-            <p>{bookDetailData?.resume}</p>
+            <p className="bookInfo__resume">{bookDetailData?.resume}</p>
             <p className="bookInfo__pages--title">Páginas: </p>
             <p className="bookInfo__pages">{bookDetailData?.pages}</p>
             <p className="bookInfo__language--title">Idioma:</p>

@@ -9,7 +9,13 @@ import BookDetail from './BookDetail';
 import api from '../services/api';
 import localStorage from '../services/localStorage';
 import { useState, useEffect } from 'react';
-import { Routes, Route, useLocation, matchPath } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useLocation,
+  matchPath,
+  useNavigate,
+} from 'react-router-dom';
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -22,7 +28,8 @@ function App() {
   const [token, setToken] = useState(localStorage.get('token') || '');
   const [isAuthenticated, setIsAuthenticated] = useState(!!token);
   const [myBooks, setMyBooks] = useState([]);
-  console.log('myBooks APP', myBooks);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -80,6 +87,10 @@ function App() {
     }
   };
 
+  const handleLoginSuccess = () => {
+    navigate('/');
+  };
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -88,6 +99,10 @@ function App() {
       setToken(token);
       localStorage.set('token', token);
       setIsAuthenticated(true);
+
+      if (token) {
+        handleLoginSuccess();
+      }
     } catch (error) {
       console.error('Error logging in:', error);
       setIsAuthenticated(false);
@@ -144,6 +159,7 @@ function App() {
               handleChangePassword={handleChangePassword}
               password={password}
               handleLogin={handleLogin}
+              handleLoginSuccess={handleLoginSuccess}
             />
           }
         />
